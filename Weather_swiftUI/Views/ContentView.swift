@@ -13,9 +13,6 @@ struct ContentView: View {
     
     init() {
         _dataVM = StateObject(wrappedValue: DataViewModel(service: APIService()))
-        if let lat = locationManager.lat, let long = locationManager.long {
-            dataVM.fetchWheatherDataApi(lat: lat, long: long)
-        }
     }
     
     var body: some View {
@@ -33,6 +30,10 @@ struct ContentView: View {
                 ActivityIndicatorView()
             }
         }.onChange(of: locationManager.lat) { newValue in
+            if let lat = locationManager.lat, let long = locationManager.long {
+                dataVM.fetchWheatherDataApi(lat: lat, long: long)
+            }
+        }.onAppear {
             if let lat = locationManager.lat, let long = locationManager.long {
                 dataVM.fetchWheatherDataApi(lat: lat, long: long)
             }

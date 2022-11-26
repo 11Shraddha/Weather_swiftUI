@@ -58,7 +58,7 @@ struct WeatherRow: View {
                 .padding(.bottom, 20)
                 .foregroundColor(Color(hue: 0.656, saturation: 0.787, brightness: 0.354))
                 .background(.white)
-                .cornerRadius(20, corners: .allCorners)
+                .cornerRadius(20)
                 
             }
             .padding()

@@ -28,3 +28,14 @@ class APIService: Service {
     }
 }
 
+
+class MockApiService: Service {
+    let testData: WeatherResponse = .init(list: [WeatherData(weather: [WeatherData.WeatherDetails(id: 1, main: "", description: "")], main: WeatherData.MainResponse(temp: 0, temp_min: 0, temp_max: 0), name: "")])
+    
+    func getWeatherData(lat: Double, long: Double) -> AnyPublisher<WeatherResponse, Error> {
+        Just(testData)
+            .tryMap({ $0 })
+            .eraseToAnyPublisher()
+    }
+}
+
